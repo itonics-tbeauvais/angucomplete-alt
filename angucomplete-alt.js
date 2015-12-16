@@ -87,7 +87,8 @@
         inputChanged: '=',
         autoMatch: '@',
         focusOut: '&',
-        focusIn: '&'
+        focusIn: '&',
+        selectOnEnter: '@'
       },
       templateUrl: function(element, attrs) {
         return attrs.templateUrl || TEMPLATE_URL;
@@ -440,7 +441,12 @@
 
         function initResults() {
           scope.showDropdown = true;
-          scope.currentIndex = -1;
+            if(scope.selectOnEnter !== undefined && (scope.selectOnEnter == true || scope.selectOnEnter == 'true')){
+                scope.currentIndex = 0;
+            }else{
+                scope.currentIndex = -1;
+            }
+
           scope.results = [];
         }
 
